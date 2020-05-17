@@ -3,13 +3,7 @@
     <div class="wrapper">
       <div class="header-content">
         <h1>Where in the world?</h1>
-        <div class="darkmode">
-          <input class="checkbox" id="checkbox" type="checkbox">
-          <label class="switch" for="checkbox">
-            <i class="moon"></i>
-            <span>Dark Mode</span>
-          </label>
-        </div>
+        <slot></slot>
       </div>
     </div>
   </header>

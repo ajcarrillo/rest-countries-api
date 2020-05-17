@@ -1,6 +1,8 @@
 <template>
-  <div id="app">
-    <Header></Header>
+  <div :class="isDarkMode" id="app">
+    <Header>
+      <SwitchComponent v-model="checked"></SwitchComponent>
+    </Header>
     <section>
       <div class="wrapper">
         <div class="">
@@ -48,60 +50,46 @@
 </template>
 
 <script>
+  import './assets/scss/app.scss'
   import Header from "@/components/Header"
+  import SwitchComponent from "@/components/Switch"
 
   export default {
     name: 'App',
     components: {
+      SwitchComponent,
       Header
-    }
+    },
+    data() {
+      return {
+        checked: false,
+      }
+    },
+    created() {
+      let mq = window.matchMedia('(prefers-color-scheme: dark)')
+
+      this.checked = mq.matches
+
+      mq.addListener(() => {
+        this.changeDarkMode(mq.matches)
+      })
+    },
+    methods: {
+      changeDarkMode(val) {
+        this.checked = val
+      }
+    },
+    computed: {
+      isDarkMode() {
+        return {
+          'is-dark-mode': this.checked,
+          'is-light-mode': !this.checked
+        }
+      },
+    },
   }
 </script>
 
 <style lang="scss">
-  @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
-  
-  :root {
-    --darkBlue: hsl(209, 23%, 22%);
-    --veryDarkBlue: hsl(207, 26%, 17%);
-    --veryLightBlue: hsl(200, 15%, 8%);
-    --darkGray: hsl(0, 0%, 52%);
-    --veryLightGray: hsl(0, 0%, 98%);
-    --white: hsl(0, 0%, 100%);
-    
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 14px;
-    
-  }
-  
-  #app {
-    
-    -webkit-font-smoothing: antialiased;
-    
-    -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
-    height: 100vh;
-    
-  }
-  
-  .wrapper {
-    width: 100%;
-    min-width: 375px;
-    max-width: 1440px;
-    border: 1px solid red;
-    
-    box-sizing: border-box;
-    padding: 0 20px;
-    
-  }
-  
-  .country img {
-    width: 100%;
-    
-  }
+
 </style>

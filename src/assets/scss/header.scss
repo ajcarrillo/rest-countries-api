@@ -1,30 +1,14 @@
 header {
+  background: var(--modeElements);
+
   .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
 
-    h1, .darkmode {
+    h1 {
       font-size: 14px;
-    }
-
-    .darkmode {
-      .checkbox {
-        display: none;
-      }
-    }
-
-    .switch {
-      cursor: pointer;
-
-      i.moon {
-        background-image: url('../moon-regular.svg');
-        width: 10px;
-        height: 10px;
-        display: inline-block;
-        margin-right: .5rem;
-      }
     }
   }
 }

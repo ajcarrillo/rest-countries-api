@@ -1,0 +1,20 @@
+.dark-mode {
+  font-size: 14px;
+
+  .checkbox {
+    display: none;
+  }
+
+  .switch {
+    cursor: pointer;
+    user-select: none;
+
+    i.moon {
+      background-image: var(--moonColor);
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      margin-right: .5rem;
+    }
+  }
+}

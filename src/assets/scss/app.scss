@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+}
+
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  background: var(--baseBackground);
+  color: var(--modeTextColor)
+}
+
+.wrapper {
+  width: 100%;
+  min-width: 375px;
+  max-width: 1440px;
+  border: 1px solid red;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+.country img {
+  width: 100%;
+}
+
+
+:root {
+  --darkBlue: hsl(209, 23%, 22%); //Dark Mode Elements
+  --veryDarkBlue: hsl(207, 26%, 17%); //Dark Mode Background
+  --veryLightBlue: hsl(200, 15%, 8%); //Light Mode Text
+  --darkGray: hsl(0, 0%, 52%); //Light Mode Input
+  --veryLightGray: hsl(0, 0%, 98%); //Light Mode Background
+  --white: hsl(0, 0%, 100%); //Dark Mode Text & Light Mode Elements
+}
+
+.is-dark-mode {
+  --baseBackground: hsl(207, 26%, 17%);
+  --modeElements: var(--darkBlue);
+  --textColor: hsl(0, 0%, 100%);
+  --moonColor: url('../../assets/moon-regular-dark.svg');
+  --modeTextColor: var(--white)
+}
+
+.is-light-mode {
+  --baseBackground: hsl(0, 0%, 98%);
+  --modeElements: var(--white);
+  --textColor: hsl(200, 15%, 8%);
+  --moonColor: url('../../assets/moon-regular.svg');
+  --modeTextColor: var(--veryLightBlue)
+}
