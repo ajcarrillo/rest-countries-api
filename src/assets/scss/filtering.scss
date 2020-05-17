@@ -1,0 +1,33 @@
+.filter-content {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  .name-filter, .region-filter {
+    padding-bottom: 1rem;
+  }
+
+  .name-filter {
+    i.magnify {
+      background: var(--magnifyColor) no-repeat;
+      width: 10px;
+      height: 10px;
+      display: block;
+      margin-right: .5rem;
+    }
+
+    .search-country {
+      width: 100%;
+      outline: none;
+      background: transparent;
+      border: none;
+      color: var(--modeInputColor);
+
+      &::placeholder {
+        color: var(--modeInputColor)
+      }
+    }
+  }
+
+
+}

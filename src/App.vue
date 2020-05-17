@@ -3,25 +3,7 @@
     <Header>
       <SwitchComponent v-model="checked"></SwitchComponent>
     </Header>
-    <section>
-      <div class="wrapper">
-        <div class="">
-          <input type="text">
-        </div>
-        <div class="">
-          <div>
-            <span>Filter by region</span>
-            <ul>
-              <li>Africa</li>
-              <li>America</li>
-              <li>Asia</li>
-              <li>Europe</li>
-              <li>Oceania</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+    <Filters></Filters>
     <main>
       <div class="wrapper">
         <article class="country">
@@ -53,10 +35,12 @@
   import './assets/scss/app.scss'
   import Header from "@/components/Header"
   import SwitchComponent from "@/components/Switch"
+  import Filters from "@/components/Filters"
 
   export default {
     name: 'App',
     components: {
+      Filters,
       SwitchComponent,
       Header
     },
