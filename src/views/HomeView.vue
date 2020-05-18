@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <main>
     <Filters></Filters>
     <CardCountriesList></CardCountriesList>
-  </div>
+  </main>
 </template>
 
 <script>

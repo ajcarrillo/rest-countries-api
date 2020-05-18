@@ -1,9 +1,7 @@
 <template>
-  <main>
-    <div class="wrapper">
-      <CardCountry :country="country" :key="country.alpha2Code" v-for="country in countries"></CardCountry>
-    </div>
-  </main>
+  <div class="wrapper">
+    <CardCountry :country="country" :key="country.alpha2Code" v-for="country in countries"></CardCountry>
+  </div>
 </template>
 
 <script>
