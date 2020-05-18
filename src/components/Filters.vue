@@ -16,6 +16,7 @@
           <div class="filter-by-region">
             <div @click="open = !open" class="list-title">
               <span>{{showSelected}}</span>
+              <i :class="{'rotate180': open}" class="caret"></i>
             </div>
             <ul :class="openList" class="items">
               <li :key="region"

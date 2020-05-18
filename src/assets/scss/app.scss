@@ -45,6 +45,10 @@ body {
   opacity: 0;
 }
 
+.rotate180 {
+  transform: rotate(180deg);
+}
+
 :root {
   --darkBlue: hsl(209, 23%, 22%); //Dark Mode Elements
   --veryDarkBlue: hsl(207, 26%, 17%); //Dark Mode Background
@@ -60,6 +64,7 @@ body {
   --textColor: hsl(0, 0%, 100%);
   --moonColor: url('../../assets/moon-regular-dark.svg');
   --magnifyColor: url('../../assets/search-solid-dark.svg');
+  --caretIcon: url('../../assets/angle-down-solid-dark.svg');
   --modeTextColor: var(--white);
   --modeInputColor: var(--white);
   --inputBoxShadow: none;
@@ -71,6 +76,7 @@ body {
   --textColor: hsl(200, 15%, 8%);
   --moonColor: url('../../assets/moon-regular.svg');
   --magnifyColor: url('../../assets/search-solid.svg');
+  --caretIcon: url('../../assets/angle-down-solid.svg');
   --modeTextColor: var(--veryLightBlue);
   --modeInputColor: var(--darkGray);
   --inputBoxShadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);

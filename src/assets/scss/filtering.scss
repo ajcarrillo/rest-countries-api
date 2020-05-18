@@ -43,6 +43,21 @@
       }
 
       .list-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        span {
+        }
+
+        i.caret {
+          background: var(--caretIcon) no-repeat;
+          width: 10px;
+          height: 10px;
+          margin-left: .5rem;
+          transition: transform .3s;
+          will-change: transform;
+        }
       }
 
       .items {
