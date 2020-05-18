@@ -34,6 +34,18 @@ body {
   align-items: center;
 }
 
+.is-visible {
+  transform: translateY(0);
+  visibility: visible;
+  opacity: 1;
+}
+
+.is-invisible {
+  transform: translateY(-50px);
+  visibility: hidden;
+  opacity: 0;
+}
+
 .country img {
   width: 100%;
 }

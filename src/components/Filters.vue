@@ -13,14 +13,15 @@
           </div>
         </div>
         <div class="region-filter">
-          <div class="">
-            <span>Filter by region</span>
-            <ul>
-              <li>Africa</li>
-              <li>America</li>
-              <li>Asia</li>
-              <li>Europe</li>
-              <li>Oceania</li>
+          <div class="filter-by-region">
+            <div @click="open = !open" class="list-title">
+              <span>{{showSelected}}</span>
+            </div>
+            <ul :class="openList" class="items">
+              <li :key="region"
+                  @click="regionSelected = region; open = false"
+                  v-for="region in regions">{{ region }}
+              </li>
             </ul>
           </div>
         </div>
@@ -36,7 +37,28 @@
     name: "Filters",
     data() {
       return {
-        countryName: ''
+        countryName: '',
+        open: false,
+        regions: [
+          'Africa',
+          'America',
+          'Asia',
+          'Europe',
+          'Oceania',
+        ],
+        regionSelected: null
+      }
+    },
+    methods: {},
+    computed: {
+      openList() {
+        return {
+          'is-invisible': !this.open,
+          'is-visible': this.open
+        }
+      },
+      showSelected() {
+        return this.regionSelected ? this.regionSelected : 'Filter By Region'
       }
     }
   }

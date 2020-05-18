@@ -29,5 +29,35 @@
     }
   }
 
+  .region-filter {
+    width: 50%;
 
+    .filter-by-region {
+      position: relative;
+
+      .list-title, .items {
+        padding: 1rem;
+        background: var(--modeElements);
+        box-shadow: var(--inputBoxShadow);
+        border-radius: 5px;
+      }
+
+      .list-title {
+      }
+
+      .items {
+        list-style: none;
+        position: absolute;
+        margin-top: .3rem;
+        left: 0;
+        right: 0;
+        transition: .3s transform, .3s opacity;
+        will-change: transform;
+
+        li {
+          padding-bottom: .5rem;
+        }
+      }
+    }
+  }
 }
