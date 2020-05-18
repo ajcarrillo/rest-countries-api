@@ -6,7 +6,10 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    countries: []
+    countries: [],
+    country: {
+      empty: true
+    }
   },
   actions: {
     async getCountriesByRegion({commit}, payload) {
@@ -16,11 +19,17 @@ const store = new Vuex.Store({
     async getCountriesByName({commit}, payload) {
       let {data} = await Services.getByName(payload)
       commit('SET_COUNTRIES', data)
+    },
+    setCountry({commit}, payload) {
+      commit('SET_COUNTRY', payload)
     }
   },
   mutations: {
     SET_COUNTRIES(state, payload) {
       state.countries = payload
+    },
+    SET_COUNTRY(state, payload) {
+      state.country = payload
     }
   }
 })

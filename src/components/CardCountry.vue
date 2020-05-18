@@ -1,5 +1,5 @@
 <template>
-  <article class="country">
+  <article @click="goToCountry" class="country">
     <div class="country-content">
       <img :src="country.flag" alt="Mexico" class="country-flag">
       <div class="country-details">
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+  import {mapActions} from 'vuex'
   import '../assets/scss/card-country.scss'
 
   export default {
@@ -33,6 +34,15 @@
         type: Object,
         required: true
       }
+    },
+    methods: {
+      goToCountry() {
+        this['setCountry'](this.country)
+        this.$router.push({name: 'details', params: {code: this.country.alpha3Code}})
+      },
+      ...mapActions([
+        'setCountry'
+      ])
     }
   }
 </script>

@@ -3,8 +3,7 @@
     <Header>
       <SwitchComponent v-model="checked"></SwitchComponent>
     </Header>
-    <Filters></Filters>
-    <CardCountriesList></CardCountriesList>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -12,14 +11,10 @@
   import './assets/scss/app.scss'
   import Header from "@/components/Header"
   import SwitchComponent from "@/components/Switch"
-  import Filters from "@/components/Filters"
-  import CardCountriesList from "@/components/CardCountriesList"
 
   export default {
     name: 'App',
     components: {
-      CardCountriesList,
-      Filters,
       SwitchComponent,
       Header
     },
