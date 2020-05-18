@@ -1,0 +1,38 @@
+.country {
+  padding: 1rem;
+
+  .country-content {
+    background: var(--modeElements);
+    box-shadow: var(--inputBoxShadow);
+    border-radius: 5px;
+
+    img {
+      border-radius: 5px 5px 0 0;
+      width: 100%;
+    }
+
+    .country-details {
+      padding: 1rem;
+
+      .country-details-name {
+        margin-top: -5px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding-bottom: .5rem;
+        }
+
+        .country-label {
+          font-weight: 600;
+          margin-right: .3rem;
+        }
+      }
+    }
+  }
+
+}

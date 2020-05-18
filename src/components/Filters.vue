@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import Services from '../services'
+  import {mapActions} from 'vuex'
   import '../assets/scss/filtering.scss'
 
   export default {
@@ -50,7 +50,11 @@
         regionSelected: null
       }
     },
-    methods: {},
+    methods: {
+      ...mapActions([
+        'getCountriesByRegion'
+      ])
+    },
     computed: {
       openList() {
         return {
@@ -60,12 +64,11 @@
       },
       showSelected() {
         return this.regionSelected ? this.regionSelected : 'Filter By Region'
-      }
+      },
     },
     watch: {
-      async regionSelected(val) {
-        let {data} = await Services.getByRegion(val)
-        console.log(data)
+      regionSelected(val) {
+        this['getCountriesByRegion'](val)
       }
     }
   }

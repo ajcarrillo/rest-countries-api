@@ -10,7 +10,7 @@ body {
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100vh;
+  min-height: 100vh;
   background: var(--baseBackground);
   color: var(--modeTextColor)
 }
@@ -19,7 +19,6 @@ body {
   width: 100%;
   min-width: 375px;
   max-width: 1440px;
-  border: 1px solid red;
   box-sizing: border-box;
   padding: 0 20px;
 }
@@ -45,11 +44,6 @@ body {
   visibility: hidden;
   opacity: 0;
 }
-
-.country img {
-  width: 100%;
-}
-
 
 :root {
   --darkBlue: hsl(209, 23%, 22%); //Dark Mode Elements
