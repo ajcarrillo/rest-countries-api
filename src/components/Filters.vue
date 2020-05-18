@@ -31,6 +31,7 @@
 </template>
 
 <script>
+  import Services from '../services'
   import '../assets/scss/filtering.scss'
 
   export default {
@@ -41,7 +42,7 @@
         open: false,
         regions: [
           'Africa',
-          'America',
+          'Americas',
           'Asia',
           'Europe',
           'Oceania',
@@ -59,6 +60,12 @@
       },
       showSelected() {
         return this.regionSelected ? this.regionSelected : 'Filter By Region'
+      }
+    },
+    watch: {
+      async regionSelected(val) {
+        let {data} = await Services.getByRegion(val)
+        console.log(data)
       }
     }
   }
