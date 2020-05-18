@@ -47,7 +47,7 @@
           </ul>
           <h2>Border Countries</h2>
           <div class="borders-countries">
-            <button :key="border" class="button" v-for="border in borders">{{ border }}</button>
+            <button :key="border" class="button" v-for="border in countryBordersNames">{{ border }}</button>
           </div>
         </article>
       </div>
@@ -56,7 +56,8 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex'
+  import '../assets/scss/details-view.scss'
+  import {mapActions, mapState} from 'vuex'
 
   export default {
     name: "DetailView",
@@ -64,12 +65,21 @@
     data() {
       return {}
     },
+    mounted() {
+      this['getCountryBorders'](this.borderCodes)
+    },
     methods: {
       back() {
         this.$router.push({name: 'home'})
-      }
+      },
+      ...mapActions([
+        'getCountryBorders'
+      ])
     },
     computed: {
+      borderCodes() {
+        return this.country.borders.join(';')
+      },
       topLevelDomain() {
         return this.country.topLevelDomain.join(', ')
       },
@@ -88,68 +98,21 @@
       borders() {
         return this.country.borders
       },
+      countryBordersNames() {
+        if (this.countryBorders.length === 0) return ''
+        return this.countryBorders
+          .map(function (el) {
+            return el.name
+          })
+      },
       ...mapState({
-        country: state => state.country
+        country: state => state.country,
+        countryBorders: state => state.countryBorders
       })
     }
   }
 </script>
 
-<style lang="scss" scoped>
-  .details-content {
-    padding-top: 1rem;
-    font-size: 16px;
-    
-    .button {
-      background-color: var(--modeElements);
-      color: var(--textColor);
-      box-shadow: var(--inputBoxShadow);
-      font-family: 'Nunito Sans', sans-serif;
-      font-size: 16px;
-      border: none;
-      outline: none;
-      border-radius: 3px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      padding: .375rem 2rem;
-      
-      i.back {
-        background: var(--backIcoon) no-repeat;
-        width: 10px;
-        height: 10px;
-        margin-right: .5rem;
-      }
-    }
-    
-    img.country-flag {
-      width: 100%;
-      margin-top: 2rem;
-    }
-    
-    .country-info {
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 2rem;
-        
-        li {
-          margin-bottom: 1rem;
-        }
-        
-        li span:first-of-type {
-          font-weight: 600;
-          margin-right: .3rem;
-        }
-      }
-      
-      .borders-countries {
-        display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
-      }
-    }
-  }
+<style scoped>
 
 </style>

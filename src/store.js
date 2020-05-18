@@ -9,7 +9,8 @@ const store = new Vuex.Store({
     countries: [],
     country: {
       empty: true
-    }
+    },
+    countryBorders: []
   },
   actions: {
     async getCountriesByRegion({commit}, payload) {
@@ -22,6 +23,10 @@ const store = new Vuex.Store({
     },
     setCountry({commit}, payload) {
       commit('SET_COUNTRY', payload)
+    },
+    async getCountryBorders({commit}, payload) {
+      let {data} = await Services.getCountryBorders(payload)
+      commit('SET_COUNTRY_BORDERS', data)
     }
   },
   mutations: {
@@ -30,6 +35,9 @@ const store = new Vuex.Store({
     },
     SET_COUNTRY(state, payload) {
       state.country = payload
+    },
+    SET_COUNTRY_BORDERS(state, payload) {
+      state.countryBorders = payload
     }
   }
 })

@@ -12,5 +12,8 @@ export default {
   },
   getByName(payload) {
     return restCountries.get(`name/${payload}`)
+  },
+  getCountryBorders(payload) {
+    return restCountries.get(`alpha?codes=${payload}`)
   }
 }

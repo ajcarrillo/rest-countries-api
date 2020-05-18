@@ -1,0 +1,55 @@
+.details-content {
+  padding-top: 1rem;
+  font-size: 16px;
+
+  .button {
+    background-color: var(--modeElements);
+    color: var(--textColor);
+    box-shadow: var(--inputBoxShadow);
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: .375rem 2rem;
+
+    i.back {
+      background: var(--backIcoon) no-repeat;
+      width: 10px;
+      height: 10px;
+      margin-right: .5rem;
+    }
+  }
+
+  img.country-flag {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .country-info {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+
+      li {
+        margin-bottom: 1rem;
+      }
+
+      li span:first-of-type {
+        font-weight: 600;
+        margin-right: .3rem;
+      }
+    }
+
+    .borders-countries {
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+  }
+}
