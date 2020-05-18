@@ -9,5 +9,8 @@ const restCountries = axios.create({
 export default {
   getByRegion(payload) {
     return restCountries.get(`region/${payload}`)
+  },
+  getByName(payload) {
+    return restCountries.get(`name/${payload}`)
   }
 }

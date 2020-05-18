@@ -12,6 +12,10 @@ const store = new Vuex.Store({
     async getCountriesByRegion({commit}, payload) {
       let {data} = await Services.getByRegion(payload)
       commit('SET_COUNTRIES', data)
+    },
+    async getCountriesByName({commit}, payload) {
+      let {data} = await Services.getByName(payload)
+      commit('SET_COUNTRIES', data)
     }
   },
   mutations: {

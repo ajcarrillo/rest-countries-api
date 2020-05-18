@@ -52,7 +52,8 @@
     },
     methods: {
       ...mapActions([
-        'getCountriesByRegion'
+        'getCountriesByRegion',
+        'getCountriesByName'
       ])
     },
     computed: {
@@ -69,6 +70,9 @@
     watch: {
       regionSelected(val) {
         this['getCountriesByRegion'](val)
+      },
+      countryName(val) {
+        if (val && val.length >= 3) this['getCountriesByName'](val)
       }
     }
   }
