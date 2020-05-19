@@ -47,7 +47,12 @@
           </ul>
           <h2>Border Countries</h2>
           <div class="borders-countries">
-            <button :key="border" class="button" v-for="border in countryBordersNames">{{ border }}</button>
+            <template v-if="!hasBorders">
+              <p style="margin-top: 0">No borders</p>
+            </template>
+            <template v-else>
+              <button :key="border" class="button" v-for="border in countryBordersNames">{{ border }}</button>
+            </template>
           </div>
         </article>
       </div>
@@ -57,7 +62,7 @@
 
 <script>
   import '../assets/scss/details-view.scss'
-  import {mapActions, mapState} from 'vuex'
+  import {mapGetters, mapState} from 'vuex'
 
   export default {
     name: "DetailView",
@@ -65,21 +70,12 @@
     data() {
       return {}
     },
-    mounted() {
-      this['getCountryBorders'](this.borderCodes)
-    },
     methods: {
       back() {
         this.$router.push({name: 'home'})
       },
-      ...mapActions([
-        'getCountryBorders'
-      ])
     },
     computed: {
-      borderCodes() {
-        return this.country.borders.join(';')
-      },
       topLevelDomain() {
         return this.country.topLevelDomain.join(', ')
       },
@@ -95,20 +91,36 @@
             return el.name
           }).join(', ')
       },
-      borders() {
+      bordersCodes() {
         return this.country.borders
       },
+      borders() {
+        let borders = []
+
+        this.bordersCodes.forEach(code => {
+          borders.push(this.findCountryByCode(code))
+        })
+
+        return borders
+      },
       countryBordersNames() {
-        if (this.countryBorders.length === 0) return ''
-        return this.countryBorders
+        if (this.bordersCodes.length === 0) return []
+        return this.borders
           .map(function (el) {
             return el.name
           })
       },
+      hasBorders() {
+        return this.bordersCodes.length > 0
+      },
       ...mapState({
+        countries: state => state.countries,
         country: state => state.country,
         countryBorders: state => state.countryBorders
-      })
+      }),
+      ...mapGetters([
+        'findCountryByCode'
+      ])
     }
   }
 </script>

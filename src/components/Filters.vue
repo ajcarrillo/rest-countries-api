@@ -32,7 +32,7 @@
 </template>
 
 <script>
-  import {mapActions} from 'vuex'
+  import {mapActions, mapGetters} from 'vuex'
   import '../assets/scss/filtering.scss'
 
   export default {
@@ -53,8 +53,8 @@
     },
     methods: {
       ...mapActions([
-        'getCountriesByRegion',
-        'getCountriesByName'
+        'setCountriesByRegion',
+        'setCountriesByName',
       ])
     },
     computed: {
@@ -67,13 +67,21 @@
       showSelected() {
         return this.regionSelected ? this.regionSelected : 'Filter By Region'
       },
+      ...mapGetters([
+        'getCountriesByName',
+        'getCountriesByRegion'
+      ])
     },
     watch: {
       regionSelected(val) {
-        this['getCountriesByRegion'](val)
+        let countries = this.getCountriesByRegion(val)
+        this.setCountriesByRegion(countries)
       },
       countryName(val) {
-        if (val && val.length >= 3) this['getCountriesByName'](val)
+        if (val && val.length >= 3) {
+          let countries = this.getCountriesByName(val)
+          this.setCountriesByName(countries)
+        }
       }
     }
   }
