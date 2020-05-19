@@ -51,7 +51,13 @@
               <p style="margin-top: 0">No borders</p>
             </template>
             <template v-else>
-              <button :key="border" class="button" v-for="border in countryBordersNames">{{ border }}</button>
+              <button :key="border.alpha3Code"
+                      @click="onClickCountry(index)"
+                      class="button"
+                      v-for="(border, index) in borders"
+              >
+                {{ border.name }}
+              </button>
             </template>
           </div>
         </article>
@@ -62,7 +68,7 @@
 
 <script>
   import '../assets/scss/details-view.scss'
-  import {mapGetters, mapState} from 'vuex'
+  import {mapActions, mapGetters, mapState} from 'vuex'
 
   export default {
     name: "DetailView",
@@ -74,6 +80,14 @@
       back() {
         this.$router.push({name: 'home'})
       },
+      onClickCountry(index) {
+        let border = this.borders[index]
+        this.setCountry(border)
+        this.$router.push({name: 'details', params: {code: border.alpha3Code}}).catch()
+      },
+      ...mapActions([
+        'setCountry'
+      ])
     },
     computed: {
       topLevelDomain() {
@@ -102,13 +116,6 @@
         })
 
         return borders
-      },
-      countryBordersNames() {
-        if (this.bordersCodes.length === 0) return []
-        return this.borders
-          .map(function (el) {
-            return el.name
-          })
       },
       hasBorders() {
         return this.bordersCodes.length > 0
