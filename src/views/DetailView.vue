@@ -45,7 +45,7 @@
               <span>{{ languages }}</span>
             </li>
           </ul>
-          <h2>Border Countries</h2>
+          <h2 style="font-weight: 600">Border Countries</h2>
           <div class="borders-countries">
             <template v-if="!hasBorders">
               <p style="margin-top: 0">No borders</p>
