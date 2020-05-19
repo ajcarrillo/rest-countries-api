@@ -75,4 +75,18 @@
       }
     }
   }
+
+  @media screen and (min-width: 1440px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .name-filter {
+      width: 40%;
+    }
+
+    .region-filter {
+      width: 20%;
+    }
+  }
 }

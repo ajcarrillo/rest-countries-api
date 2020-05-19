@@ -1,69 +1,76 @@
 <template>
-  <main>
-    <div class="wrapper">
+  <div class="wrapper">
+    <div class="content">
+      <button @click="back" class="button back" type="button">
+        <i class="back"></i>
+        <span>Back</span>
+      </button>
       <div class="details-content">
-        <button @click="back" class="button" type="button">
-          <i class="back"></i>
-          <span>Back</span>
-        </button>
-        <img :alt="country.name" :src="country.flag" class="country-flag">
+        <div class="country-flag">
+          <img :alt="country.name" :src="country.flag">
+        </div>
         <article class="country-info">
           <h1>{{ country.name }}</h1>
-          <ul>
-            <li>
-              <span>Native name:</span>
-              <span>{{country.nativeName}}</span>
-            </li>
-            <li>
-              <span>Population:</span>
-              <span>{{ country.population.toLocaleString() }}</span>
-            </li>
-            <li>
-              <span>Region:</span>
-              <span>{{country.region}}</span>
-            </li>
-            <li>
-              <span>Sub Region:</span>
-              <span>{{country.subregion}}</span>
-            </li>
-            <li>
-              <span>Capital:</span>
-              <span>{{ country.capital }}</span>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <span>Top Level Domain:</span>
-              <span>{{ topLevelDomain }}</span>
-            </li>
-            <li>
-              <span>Currencies:</span>
-              <span>{{currencies}}</span>
-            </li>
-            <li>
-              <span>Languages:</span>
-              <span>{{ languages }}</span>
-            </li>
-          </ul>
-          <h2 style="font-weight: 600">Border Countries</h2>
-          <div class="borders-countries">
-            <template v-if="!hasBorders">
-              <p style="margin-top: 0">No borders</p>
-            </template>
-            <template v-else>
-              <button :key="border.alpha3Code"
-                      @click="onClickCountry(index)"
-                      class="button"
-                      v-for="(border, index) in borders"
-              >
-                {{ border.name }}
-              </button>
-            </template>
+          <div class="lists-container">
+            <ul>
+              <li>
+                <span>Native name:</span>
+                <span>{{country.nativeName}}</span>
+              </li>
+              <li>
+                <span>Population:</span>
+                <span>{{ country.population.toLocaleString() }}</span>
+              </li>
+              <li>
+                <span>Region:</span>
+                <span>{{country.region}}</span>
+              </li>
+              <li>
+                <span>Sub Region:</span>
+                <span>{{country.subregion}}</span>
+              </li>
+              <li>
+                <span>Capital:</span>
+                <span>{{ country.capital }}</span>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <span>Top Level Domain:</span>
+                <span>{{ topLevelDomain }}</span>
+              </li>
+              <li>
+                <span>Currencies:</span>
+                <span>{{currencies}}</span>
+              </li>
+              <li>
+                <span>Languages:</span>
+                <span>{{ languages }}</span>
+              </li>
+            </ul>
           </div>
+          <div class="borders-container">
+            <h2>Border Countries:</h2>
+            <div class="borders-countries">
+              <template v-if="!hasBorders">
+                <p style="margin-top: 0">No borders</p>
+              </template>
+              <template v-else>
+                <button :key="border.alpha3Code"
+                        @click="onClickCountry(index)"
+                        class="button border"
+                        v-for="(border, index) in borders"
+                >
+                  {{ border.name }}
+                </button>
+              </template>
+            </div>
+          </div>
+        
         </article>
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>

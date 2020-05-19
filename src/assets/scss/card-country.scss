@@ -9,6 +9,7 @@
     img {
       border-radius: 5px 5px 0 0;
       width: 100%;
+      height: 100%;
     }
 
     .country-details {
@@ -35,4 +36,17 @@
     }
   }
 
+  @media screen and (min-width: 1440px) {
+    width: 20%;
+    .country-content {
+      height: 100%;
+
+      .country-flag {
+        width: 280px;
+        height: 200px;
+        overflow: hidden;
+        object-fit: cover;
+      }
+    }
+  }
 }

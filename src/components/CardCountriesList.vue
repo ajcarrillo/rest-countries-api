@@ -1,12 +1,14 @@
 <template>
   <div class="wrapper">
-    <template v-if="loading">
-      <p>Loading countries...</p>
-    </template>
-    <template v-else>
-      <CardCountry :country="country" :key="country.alpha2Code"
-                   v-for="country in draftCountries"></CardCountry>
-    </template>
+    <div class="grid">
+      <template v-if="loading">
+        <p>Loading countries...</p>
+      </template>
+      <template v-else>
+        <CardCountry :country="country" :key="country.alpha2Code"
+                     v-for="country in draftCountries"></CardCountry>
+      </template>
+    </div>
   </div>
 </template>
 
