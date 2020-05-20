@@ -7,12 +7,12 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/rest-countries-api',
     component: HomeView,
     name: 'home'
   },
   {
-    path: '/:code/details',
+    path: '/rest-countries-api/:code/details',
     component: DetailView,
     name: 'details',
     props: true
