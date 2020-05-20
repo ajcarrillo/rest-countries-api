@@ -53,7 +53,11 @@
     watch: {
       countriesBy: {
         handler: function (val) {
-          this.draftCountries = val
+          if (val.length > 0) {
+            this.draftCountries = val
+            return
+          }
+          this.draftCountries = this.countries
         }
       }
     }

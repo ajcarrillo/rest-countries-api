@@ -81,7 +81,10 @@
         if (val && val.length >= 3) {
           let countries = this.getCountriesByName(val)
           this.setCountriesByName(countries)
+          return
         }
+        this.setCountriesByName([])
+
       }
     }
   }

@@ -19,10 +19,10 @@ const store = new Vuex.Store({
       commit('SET_COUNTRIES', data)
       commit('SET_COUNTRIES_BY', [])
     },
-    async setCountriesByRegion({commit}, payload) {
+    setCountriesByRegion({commit}, payload) {
       commit('SET_COUNTRIES_BY', payload)
     },
-    async setCountriesByName({commit}, payload) {
+    setCountriesByName({commit}, payload) {
       commit('SET_COUNTRIES_BY', payload)
     },
     setCountry({commit}, payload) {
