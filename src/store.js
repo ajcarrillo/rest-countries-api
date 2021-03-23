@@ -28,6 +28,28 @@ const store = new Vuex.Store({
     setCountry({commit}, payload) {
       commit('SET_COUNTRY', payload)
     },
+    async fetchCountry({commit, getters, state}, payload) {
+      try {
+        console.log(payload)
+        console.log(state)
+        if (payload == state.country.alpha3Code) {
+          return state.country
+        }
+
+        let country = getters.findCountryByCode(payload)
+
+        if (country) {
+          commit('SET_COUNTRY', country)
+          return country
+        } else {
+          let {data} = await Services.getCountryByCode(payload)
+          commit('SET_COUNTRY', data)
+          return data
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    }
   },
   getters: {
     getCountriesByName: state => name => {

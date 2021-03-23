@@ -56,17 +56,18 @@
                 <p style="margin-top: 0">No borders</p>
               </template>
               <template v-else>
-                <button :key="border.alpha3Code"
-                        @click="onClickCountry(index)"
-                        class="button border"
-                        v-for="(border, index) in borders"
+                <router-link
+                    v-for="border in bordersCodes"
+                    :key="border"
+                    :to="{name: 'details', params:{code: border}}"
+                    class="button border"
                 >
-                  {{ border.name }}
-                </button>
+                  {{ border }}
+                </router-link>
               </template>
             </div>
           </div>
-        
+
         </article>
       </div>
     </div>
@@ -76,6 +77,7 @@
 <script>
   import '../assets/scss/details-view.scss'
   import {mapActions, mapGetters, mapState} from 'vuex'
+  import store from "@/store"
 
   export default {
     name: "DetailView",
@@ -87,14 +89,22 @@
       back() {
         this.$router.push({name: 'home'})
       },
-      onClickCountry(index) {
-        let border = this.borders[index]
-        this.setCountry(border)
-        this.$router.push({name: 'details', params: {code: border.alpha3Code}}).catch()
-      },
       ...mapActions([
         'setCountry'
       ])
+    },
+    async beforeRouteUpdate(to, from, next) {
+      try {
+        let country = await store.dispatch('fetchCountry', to.params.code)
+        to.params.code = country
+        next()
+      } catch (e) {
+        if (e.response && e.response.status == 404) {
+          next()
+        } else {
+          next()
+        }
+      }
     },
     computed: {
       topLevelDomain() {
@@ -102,9 +112,9 @@
       },
       currencies() {
         return this.country.currencies
-          .map(function (el) {
-            return el.name
-          }).join(', ')
+            .map(function (el) {
+              return el.name
+            }).join(', ')
       },
       languages() {
         return this.country.languages
@@ -127,9 +137,11 @@
       hasBorders() {
         return this.bordersCodes.length > 0
       },
+      country() {
+        return this.code
+      },
       ...mapState({
         countries: state => state.countries,
-        country: state => state.country,
         countryBorders: state => state.countryBorders
       }),
       ...mapGetters([

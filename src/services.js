@@ -18,5 +18,8 @@ export default {
   },
   getCountryBorders(payload) {
     return restCountries.get(`alpha?codes=${payload}`)
+  },
+  getCountryByCode(payload) {
+    return restCountries.get(`alpha/${payload}`)
   }
 }
